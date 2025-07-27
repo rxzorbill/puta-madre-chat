@@ -16,6 +16,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    overflow: hidden; /* Evita el scroll global */
 }
 
 /* ================================================= */
@@ -235,7 +236,7 @@ body {
 .room-card-overlay h3 { margin: 0 0 0.25rem 0; font-size: 1.5rem; }
 .room-card-overlay p { margin: 0; font-size: 0.9rem; color: #ccc; }
 .hidden { display: none !important; }
-.chat-container { display: flex; gap: 1.5rem; margin-top: 0; flex-grow: 1; overflow: hidden; height: auto; max-height: none; text-align: left; }
+.chat-container { display: flex; gap: 1.5rem; margin-top: 0; flex-grow: 1; overflow: hidden; height: 100%; max-height: none; text-align: left; }
 .users-sidebar { flex: 0 0 200px; background-color: rgba(0, 0, 0, 0.2); border-radius: 0.5rem; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
 .users-sidebar > div { display: flex; flex-direction: column; overflow: hidden; }
 .users-sidebar h3 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); font-size: 1.1rem; flex-shrink: 0; }
@@ -259,46 +260,67 @@ textarea#messageInput:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(
 #logoutBtn:hover { background-color: #9b2c2c; }
 
 /* ================================================= */
-/* === NUEVOS ESTILOS PARA PANTALLAS MÓVILES === */
+/* === CORRECCIONES DEFINITIVAS PARA MÓVILES === */
 /* ================================================= */
 
 @media (max-width: 900px) {
-    /* SOLUCIÓN 1: Muestra la lista de usuarios globales en el lobby móvil */
+    /* SOLUCIÓN 1: El contenedor del lobby se adapta al contenido */
+    .lobby-container {
+        height: auto;
+        max-height: 95vh;
+        overflow-y: auto; /* Permite scroll si el contenido es muy alto */
+    }
+
+    /* SOLUCIÓN 2 y 4: Muestra la lista de usuarios globales en el lobby móvil */
     .lobby-content {
-        flex-direction: column; /* Apila la galería y la lista de usuarios */
+        flex-direction: column;
     }
     .global-users-sidebar {
-        flex: 0 0 auto; /* Permite que la altura se ajuste al contenido */
-        max-height: 150px; /* Altura máxima para no ocupar toda la pantalla */
+        flex-shrink: 0; /* Evita que se encoja */
+        order: -1; /* Mueve la lista de usuarios arriba de la galería */
+        max-height: 200px;
+    }
+    .gallery-container {
+        min-height: 300px; /* Asegura un espacio mínimo para la galería */
     }
 }
 
 @media (max-width: 768px) {
-    .lobby-container, .container {
+    .container {
+        height: auto;
+    }
+    .lobby-container {
         padding: 1rem;
-        max-height: 100vh;
-        height: 100%;
     }
 
-    /* SOLUCIÓN 2.3: Muestra la lista de usuarios en la sala móvil */
+    /* SOLUCIÓN 3: Muestra la lista de usuarios en la sala móvil */
     .chat-container {
         flex-direction: column;
+        padding: 1rem; /* Añade padding al contenedor del chat en móvil */
+        height: 100%;
+        max-height: 100vh;
     }
     .users-sidebar {
         flex: 0 0 auto;
-        max-height: 120px;
+        max-height: 150px;
+    }
+    
+    /* SOLUCIÓN 5: Achica el botón de cerrar sesión */
+    #logoutBtn {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+        width: 100%; /* Ocupa todo el ancho de la sidebar */
     }
 
     .room-gallery { 
         grid-template-columns: 1fr; 
     }
 
-    /* SOLUCIÓN 2.1: Arregla el botón "Cambiar de Sala" */
     .chat-header h2 {
-        font-size: 1.1rem; /* Reduce el tamaño del título para dar espacio */
+        font-size: 1.1rem;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis; /* Añade "..." si el nombre es muy largo */
+        text-overflow: ellipsis;
     }
     #changeRoomBtn {
         font-size: 0.8rem;
