@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lobby - Sala de Chat</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="lobby-container">
+    <img src="logo.png" alt="Logo del Chat" class="logo-img">
+
+    <div id="room-selection" class="lobby-content">
+        <div class="gallery-container">
+            <h2>Elige un canal para conversar</h2>
+            <div class="room-gallery">
+                <div class="room-card" data-room="Música">
+                    <img src="https://placehold.co/400x200/2d3748/edf2f7?text=Música" alt="Sala de Música">
+                    <div class="room-card-overlay">
+                        <h3>Música</h3>
+                        <p>Comparte tus artistas y canciones favoritas.</p>
+                    </div>
+                </div>
+                <div class="room-card" data-room="Videojuegos">
+                    <img src="https://placehold.co/400x200/c53030/f7fafc?text=Videojuegos" alt="Sala de Videojuegos">
+                    <div class="room-card-overlay">
+                        <h3>Videojuegos</h3>
+                        <p>Noticias, gameplays y equipos.</p>
+                    </div>
+                </div>
+                <div class="room-card" data-room="Arte y Diseño">
+                    <img src="https://placehold.co/400x200/d69e2e/fffaf0?text=Arte" alt="Sala de Arte y Diseño">
+                    <div class="room-card-overlay">
+                        <h3>Arte y Diseño</h3>
+                        <p>Inspiración, técnicas y portafolios.</p>
+                    </div>
+                </div>
+                <div class="room-card" data-room="Cine y Series">
+                    <img src="https://placehold.co/400x200/38a169/f0fff4?text=Cine" alt="Sala de Cine y Series">
+                    <div class="room-card-overlay">
+                        <h3>Cine y Series</h3>
+                        <p>Debate sobre los últimos estrenos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <aside class="global-users-sidebar">
+            <h3>Usuarios Online</h3>
+            <ul id="global-user-list">
+                </ul>
+        </aside>
+    </div>
+
+    <div class="chat-container hidden">
+        <aside class="users-sidebar">
+            <div>
+                <h3>Usuarios Conectados</h3>
+                <ul id="user-list"></ul>
+            </div>
+            <button id="logoutBtn">Cerrar Sesión</button>
+        </aside>
+
+        <main class="chat-box">
+            <header class="chat-header">
+                <h2 id="roomTitle">Sala: </h2>
+                <button id="changeRoomBtn">Cambiar de Sala</button>
+            </header>
+            <div id="messages"></div>
+            <div id="typing-indicator"></div>
+            <div class="message-form-container">
+                <textarea id="messageInput" placeholder="Escribe un mensaje..." rows="1"></textarea>
+                <button id="sendBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </div>
+        </main>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/lobby.js" defer></script>
+</body>
+</html>

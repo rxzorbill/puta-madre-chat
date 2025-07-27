@@ -1,0 +1,10 @@
+# Dependencias
+/node_modules
+
+# Archivos de entorno y credenciales
+.env
+serviceAccountKey.json
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
