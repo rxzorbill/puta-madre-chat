@@ -205,7 +205,8 @@ body {
     overflow-y: auto;
 }
 
-#global-user-list li {
+/* ACTUALIZADO: Estilos unificados para ambas listas de usuarios */
+#global-user-list li, #user-list li {
     display: flex;
     align-items: center;
     padding: 0.5rem;
@@ -214,6 +215,12 @@ body {
     color: #e5e7eb;
     word-break: break-all;
     text-align: left;
+    cursor: pointer; /* NUEVO: Indica que se puede hacer clic */
+    transition: background-color 0.2s ease;
+}
+
+#global-user-list li:hover, #user-list li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 #global-user-list li::before {
@@ -225,6 +232,12 @@ body {
     border-radius: 50%;
     margin-right: 10px;
     flex-shrink: 0;
+}
+
+/* NUEVO: Estilo para resaltar tu propio nombre en las listas */
+.current-user {
+    color: #a5d8ff !important; /* Un azul claro para destacar */
+    font-weight: 600;
 }
 
 .room-card { position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.1); }
@@ -240,13 +253,70 @@ body {
 .users-sidebar > div { display: flex; flex-direction: column; overflow: hidden; }
 .users-sidebar h3 { margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); font-size: 1.1rem; flex-shrink: 0; }
 #user-list { list-style: none; padding: 0; overflow-y: auto; }
-#user-list li { padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem; color: #e5e7eb; transition: background-color 0.2s ease; word-break: break-all; }
-#user-list li:hover { background-color: rgba(255, 255, 255, 0.1); }
 .chat-box { flex-grow: 1; margin-top: 0; display: flex; flex-direction: column; height: 100%; max-height: none; }
 .chat-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 1rem; flex-shrink: 0; }
 #changeRoomBtn { padding: 0.4rem 0.8rem; background-color: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; margin-top: 0; }
 #changeRoomBtn:hover { background-color: rgba(255, 255, 255, 0.2); }
-#messages { flex-grow: 1; overflow-y: auto; background: rgba(10, 10, 15, 0.3); padding: 1rem; border-radius: 0.5rem; text-align: left; color: white; }
+
+/* ACTUALIZADO: Contenedor de mensajes ahora es flexbox */
+#messages { 
+    flex-grow: 1; 
+    overflow-y: auto; 
+    background: rgba(10, 10, 15, 0.3); 
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    color: white; 
+    display: flex; /* NUEVO */
+    flex-direction: column; /* NUEVO */
+    gap: 0.75rem; /* NUEVO: Espacio entre mensajes */
+}
+
+/* NUEVO: Estilos para cada burbuja de mensaje */
+.message-item {
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    max-width: 75%;
+    align-self: flex-start; /* Por defecto, los mensajes se alinean a la izquierda */
+    background-color: rgba(40, 40, 50, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    word-wrap: break-word;
+}
+
+.message-item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #93c5fd; /* Azul claro para el nombre de usuario */
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.message-item p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* NUEVO: Estilo específico para TUS mensajes */
+.my-message {
+    align-self: flex-end; /* Se alinea a la derecha */
+    background-color: rgba(59, 130, 246, 0.4); /* Color azul del botón de enviar */
+    border-color: rgba(96, 165, 250, 0.4);
+}
+
+.my-message strong {
+    color: #e0e0e0; /* Un color ligeramente diferente para tu propio nombre */
+}
+
+/* NUEVO: Estilo para los mensajes del sistema */
+.system-info {
+    align-self: center;
+    background-color: rgba(80, 80, 90, 0.4);
+    color: #d1d5db;
+    font-size: 0.85rem;
+    font-style: italic;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
 #typing-indicator { height: 24px; padding: 0 0.5rem; color: #aaa; font-style: italic; font-size: 0.9rem; transition: opacity 0.3s ease; text-align: left; }
 .message-form-container { display: flex; align-items: flex-end; padding: 1rem 0 0 0; gap: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: auto; flex-shrink: 0; }
 textarea#messageInput { flex-grow: 1; border: 1px solid rgba(255, 255, 255, 0.3); background-color: rgba(0, 0, 0, 0.4); padding: 0.6rem 1rem; border-radius: 20px; font-size: 1rem; font-family: 'Poppins', sans-serif; color: white; outline: none; transition: box-shadow 0.2s ease, border-color 0.2s ease, height 0.1s ease; resize: none; overflow-y: hidden; line-height: 1.5; min-height: 44px; }
@@ -255,60 +325,175 @@ textarea#messageInput:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(
 #sendBtn:hover { background-color: #2563eb; }
 #sendBtn:active { transform: scale(0.95); }
 #sendBtn svg { width: 22px; height: 22px; }
-#logoutBtn { padding: 0.6rem; background-color: #c53030; color: white; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; margin-top: 1rem; flex-shrink: 0; }
-#logoutBtn:hover { background-color: #9b2c2c; }
 
 /* ================================================= */
-/* === CORRECCIONES DEFINITIVAS PARA MÓVILES === */
+/* === ESTILOS PARA EL MODAL DE PERFIL === */
+/* ================================================= */
+
+.profile-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.profile-modal {
+    background-color: rgba(40, 40, 50, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    color: white;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: white;
+}
+
+.profile-modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#profileAvatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 1rem;
+}
+
+#profileUsername {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.profile-modal-body p {
+    font-size: 1rem;
+    color: #e5e7eb;
+}
+
+.profile-modal-body span {
+    font-weight: 400;
+    color: #d1d5db;
+}
+
+.profile-modal-footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#modalLogoutBtn {
+    padding: 0.6rem 1.5rem;
+    background-color: #c53030;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#modalLogoutBtn:hover {
+    background-color: #9b2c2c;
+}
+
+/* ================================================= */
+/* === ESTILOS PARA SCROLLBARS PERSONALIZADAS === */
+/* ================================================= */
+
+/* NUEVO: Mejora visual para las barras de scroll */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* ================================================= */
+/* === CORRECCIONES PARA MÓVILES === */
 /* ================================================= */
 
 @media (max-width: 900px) {
-    /* SOLUCIÓN 1: El contenedor del lobby se adapta al contenido */
     .lobby-container {
         height: auto;
         max-height: 95vh;
-        overflow-y: auto; /* Permite scroll si el contenido es muy alto */
+        overflow-y: auto;
     }
 
-    /* SOLUCIÓN 2 y 4: Muestra la lista de usuarios globales en el lobby móvil */
     .lobby-content {
         flex-direction: column;
     }
     .global-users-sidebar {
-        flex-shrink: 0; /* Evita que se encoja */
-        order: -1; /* Mueve la lista de usuarios arriba de la galería */
+        flex-shrink: 0;
+        order: -1;
         max-height: 200px;
     }
     .gallery-container {
-        min-height: 300px; /* Asegura un espacio mínimo para la galería */
+        min-height: 300px;
     }
 }
 
 @media (max-width: 768px) {
-    .container {
-        height: auto;
+    body {
+        padding: 0; /* Ocupa toda la pantalla en móvil */
     }
-    .lobby-container {
+    .container, .lobby-container {
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
         padding: 1rem;
     }
 
-    /* SOLUCIÓN 3: Muestra la lista de usuarios en la sala móvil */
     .chat-container {
         flex-direction: column;
-        padding: 1rem; /* Añade padding al contenedor del chat en móvil */
         height: 100%;
-        max-height: 100vh;
     }
     .users-sidebar {
         flex: 0 0 auto;
         max-height: 150px;
     }
-    
-    /* SOLUCIÓN 5: Achica el botón de cerrar sesión */
-    #logoutBtn {
-        padding: 0.4rem;
-        font-size: 0.8rem;
-        width: 100%; /* Ocupa todo el ancho de la sidebar */
+
+    .chat-box {
+        min-height: 0;
+        flex-grow: 1;
     }
 
     .room-gallery { 

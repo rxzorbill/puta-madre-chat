@@ -48,17 +48,17 @@
         <aside class="global-users-sidebar">
             <h3>Usuarios Online</h3>
             <ul id="global-user-list">
-                </ul>
+                <!-- Los usuarios se llenarán aquí -->
+            </ul>
         </aside>
     </div>
 
     <div class="chat-container hidden">
         <aside class="users-sidebar">
             <div>
-                <h3>Usuarios Conectados</h3>
+                <h3>Usuarios en la Sala</h3>
                 <ul id="user-list"></ul>
             </div>
-            <button id="logoutBtn">Cerrar Sesión</button>
         </aside>
 
         <main class="chat-box">
@@ -77,12 +77,31 @@
         </main>
     </div>
   </div>
+    <div id="profileModalOverlay" class="profile-modal-overlay hidden">
+    <div id="profileModal" class="profile-modal">
+        <button id="closeModalBtn" class="close-modal-btn">&times;</button>
+        <div class="profile-modal-header">
+            <img src="https://placehold.co/100x100/4a5568/ffffff?text=Perfil" alt="Avatar" id="profileAvatar">
+            <h2 id="profileUsername">Nombre de Usuario</h2>
+        </div>
+        <div class="profile-modal-body">
+            <p><strong>Correo:</strong> <span id="profileEmail">cargando...</span></p>
+        </div>
+        <div class="profile-modal-footer">
+            <button id="modalLogoutBtn" class="hidden">Cerrar Sesión</button>
+        </div>
+    </div>
+  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js"></script>
+  <!-- CAMBIO CLAVE: Scripts de Firebase v9+ modulares -->
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js"></script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/lobby.js" defer></script>
+  
+  <!-- CAMBIO CLAVE: Tu script ahora debe ser de tipo "module" -->
+  <script type="module" src="/js/lobby.js"></script>
 </body>
 </html>
