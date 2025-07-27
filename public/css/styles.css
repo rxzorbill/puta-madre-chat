@@ -16,8 +16,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    /* SOLUCIÓN 3: Evita el scroll en el cuerpo de la página */
-    overflow: hidden;
 }
 
 /* ================================================= */
