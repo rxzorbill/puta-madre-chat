@@ -16,23 +16,125 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    /* SOLUCIÓN 3: Evita el scroll en el cuerpo de la página */
+    overflow: hidden;
 }
 
-/* ... (Estilos de login y registro sin cambios) ... */
-.container { text-align: center; background-color: rgba(65, 65, 73, 0.35); padding: 2rem; border-radius: 1rem; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); width: 100%; max-width: 400px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-.logo-img { width: 120px; margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto; }
-#loginForm, #registerForm { display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }
-#loginForm input:not([type="checkbox"]), #registerForm input:not([type="checkbox"]) { padding: 0.8rem 1rem; width: 100%; max-width: 300px; border: none; border-radius: 0.5rem; font-size: 1rem; text-align: left; font-family: 'Poppins', sans-serif; background-color: rgba(255, 255, 255, 0.9); color: #333; }
-#loginForm h2, #registerForm h2 { margin-bottom: 0.5rem; color: white; }
-#loginForm button, #registerForm button { padding: 0.8rem 1.5rem; background-color: #2f2e3a; color: white; border: none; border-radius: 0.5rem; font-size: 1rem; cursor: pointer; transition: background-color 0.2s ease-in-out; width: 100%; max-width: 300px; }
-#loginForm button:hover, #registerForm button:hover { background-color: #4c4c57; }
-.error { color: #f87171; font-size: 0.9rem; font-weight: 600; min-height: 20px; }
-.toggle-form { margin-top: 1rem; color: #ccc; font-size: 0.9rem; }
-.toggle-form a { color: white; font-weight: 600; text-decoration: none; }
-.toggle-form a:hover { text-decoration: underline; }
-.terms { display: flex; align-items: center; justify-content: center; color: #ddd; font-size: 0.9rem; width: 100%; max-width: 300px; }
-.terms input[type="checkbox"] { width: auto; margin: 0; margin-right: 5px; flex-shrink: 0; }
-.terms label { white-space: nowrap; text-align: left; }
+/* ================================================= */
+/* === ESTILOS PARA LOGIN Y REGISTRO === */
+/* ================================================= */
+
+.container {
+    text-align: center;
+    background-color: rgba(65, 65, 73, 0.35);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-img {
+  width: 120px;
+  margin-bottom: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  flex-shrink: 0;
+}
+
+#loginForm, #registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+#loginForm input:not([type="checkbox"]), 
+#registerForm input:not([type="checkbox"]) {
+  padding: 0.8rem 1rem;
+  width: 100%;
+  max-width: 300px;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
+#loginForm h2, #registerForm h2 {
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+#loginForm button, #registerForm button {
+  padding: 0.8rem 1.5rem;
+  background-color: #2f2e3a;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  width: 100%;
+  max-width: 300px;
+}
+
+#loginForm button:hover, #registerForm button:hover {
+  background-color: #4c4c57;
+}
+
+.error {
+    color: #f87171;
+    font-size: 0.9rem;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+.toggle-form {
+    margin-top: 1rem;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.toggle-form a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.toggle-form a:hover {
+    text-decoration: underline;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #ddd;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 300px;
+}
+
+.terms input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.terms label {
+    white-space: nowrap;
+    text-align: left;
+}
+
 
 /* ================================================= */
 /* === ESTILOS PARA EL LOBBY Y EL CHAT === */
@@ -45,7 +147,7 @@ body {
   text-align: center;
   backdrop-filter: blur(10px);
   color: #fff;
-  max-width: 1100px; /* Aumentado para el nuevo layout */
+  max-width: 1100px;
   width: 100%;
   margin: auto;
   display: flex;
@@ -58,10 +160,6 @@ body {
     margin-bottom: 1.5rem;
     font-weight: 600;
 }
-
-/* ================================================= */
-/* === NUEVOS ESTILOS PARA EL LOBBY (USUARIOS ONLINE) === */
-/* ================================================= */
 
 .lobby-content {
     display: flex;
@@ -86,7 +184,7 @@ body {
 }
 
 .global-users-sidebar {
-    flex: 0 0 220px; /* Ancho fijo para la nueva sidebar */
+    flex: 0 0 220px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 0.5rem;
     padding: 1rem;
@@ -120,13 +218,12 @@ body {
     text-align: left;
 }
 
-/* La bolita verde de estado "online" */
 #global-user-list li::before {
     content: '';
     display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: #48bb78; /* Verde */
+    background-color: #48bb78;
     border-radius: 50%;
     margin-right: 10px;
     flex-shrink: 0;
@@ -138,7 +235,7 @@ body {
 .room-card:hover img { transform: scale(1.1); }
 .room-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); padding: 2rem 1rem 1rem 1rem; color: white; }
 .room-card-overlay h3 { margin: 0 0 0.25rem 0; font-size: 1.5rem; }
-.room-card-overlay p { margin: 0; font-size: 0.9rem; color: #ffffff; }
+.room-card-overlay p { margin: 0; font-size: 0.9rem; color: #ccc; }
 .hidden { display: none !important; }
 .chat-container { display: flex; gap: 1.5rem; margin-top: 0; flex-grow: 1; overflow: hidden; height: auto; max-height: none; text-align: left; }
 .users-sidebar { flex: 0 0 200px; background-color: rgba(0, 0, 0, 0.2); border-radius: 0.5rem; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
@@ -152,7 +249,7 @@ body {
 #changeRoomBtn { padding: 0.4rem 0.8rem; background-color: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; margin-top: 0; }
 #changeRoomBtn:hover { background-color: rgba(255, 255, 255, 0.2); }
 #messages { flex-grow: 1; overflow-y: auto; background: rgba(10, 10, 15, 0.3); padding: 1rem; border-radius: 0.5rem; text-align: left; color: white; }
-#typing-indicator { height: 24px; padding: 0 0.5rem; color: #ffffff; font-style: italic; font-size: 0.9rem; transition: opacity 0.3s ease; text-align: left; }
+#typing-indicator { height: 24px; padding: 0 0.5rem; color: #aaa; font-style: italic; font-size: 0.9rem; transition: opacity 0.3s ease; text-align: left; }
 .message-form-container { display: flex; align-items: flex-end; padding: 1rem 0 0 0; gap: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: auto; flex-shrink: 0; }
 textarea#messageInput { flex-grow: 1; border: 1px solid rgba(255, 255, 255, 0.3); background-color: rgba(0, 0, 0, 0.4); padding: 0.6rem 1rem; border-radius: 20px; font-size: 1rem; font-family: 'Poppins', sans-serif; color: white; outline: none; transition: box-shadow 0.2s ease, border-color 0.2s ease, height 0.1s ease; resize: none; overflow-y: hidden; line-height: 1.5; min-height: 44px; }
 textarea#messageInput:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2); }
@@ -163,15 +260,50 @@ textarea#messageInput:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(
 #logoutBtn { padding: 0.6rem; background-color: #c53030; color: white; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; margin-top: 1rem; flex-shrink: 0; }
 #logoutBtn:hover { background-color: #9b2c2c; }
 
+/* ================================================= */
+/* === NUEVOS ESTILOS PARA PANTALLAS MÓVILES === */
+/* ================================================= */
+
 @media (max-width: 900px) {
+    /* SOLUCIÓN 1: Muestra la lista de usuarios globales en el lobby móvil */
+    .lobby-content {
+        flex-direction: column; /* Apila la galería y la lista de usuarios */
+    }
     .global-users-sidebar {
-        display: none; 
+        flex: 0 0 auto; /* Permite que la altura se ajuste al contenido */
+        max-height: 150px; /* Altura máxima para no ocupar toda la pantalla */
     }
 }
+
 @media (max-width: 768px) {
-    .users-sidebar {
-        display: none; 
+    .lobby-container, .container {
+        padding: 1rem;
+        max-height: 100vh;
+        height: 100%;
     }
-    .lobby-container { padding: 1rem; max-height: 100vh; }
-    .room-gallery { grid-template-columns: 1fr; }
+
+    /* SOLUCIÓN 2.3: Muestra la lista de usuarios en la sala móvil */
+    .chat-container {
+        flex-direction: column;
+    }
+    .users-sidebar {
+        flex: 0 0 auto;
+        max-height: 120px;
+    }
+
+    .room-gallery { 
+        grid-template-columns: 1fr; 
+    }
+
+    /* SOLUCIÓN 2.1: Arregla el botón "Cambiar de Sala" */
+    .chat-header h2 {
+        font-size: 1.1rem; /* Reduce el tamaño del título para dar espacio */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Añade "..." si el nombre es muy largo */
+    }
+    #changeRoomBtn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
 }
